@@ -1,5 +1,11 @@
 # Sistema básico de gestión de Restaurante (POO - Python)
 
+Alumno: Octavio Manuel Alvarez Cedeño
+
+Descripción breve:
+
+Este proyecto implementa un sistema educativo y sencillo para gestionar los elementos básicos de un restaurante: productos (platos y bebidas), clientes y la lógica para crear pedidos y calcular totales. Está pensado para demostrar buenas prácticas de organización mediante módulos y separación de responsabilidades en POO.
+
 Este repositorio contiene un desarrollo educativo que demuestra cómo organizar un proyecto en módulos usando Programación Orientada a Objetos (POO) en Python. El ejemplo modela un sistema simple de restaurante con entidades mínimas: Producto, Cliente y un servicio Restaurante que administra productos, clientes y pedidos.
 
 Estructura del proyecto (ubicación dentro de `SEMANA_4`)
@@ -90,4 +96,8 @@ git push origin main
 Contacto / Créditos
 
 Desarrollado como actividad de curso para demostrar organización de proyectos con POO en Python.
+
+Reflexión sobre la importancia de modularizar y separar responsabilidades
+
+Modularizar el software y separar responsabilidades permite construir proyectos más mantenibles, testeables y comprensibles. Al dividir el código en modelos (que representan entidades) y servicios (que contienen la lógica de negocio), se facilita la localización de errores, la reutilización de componentes y la colaboración entre desarrolladores. Incluso en ejercicios pequeños, aplicar esta organización ayuda a escalar el sistema en el futuro y a incorporar mejoras (persistencia, pruebas, interfaces) sin romper las partes ya funcionales.
 
