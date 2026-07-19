@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/__init__.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/__init__.py" />
+              <option name="updatedContent" value="# Paquete principal de la aplicación restaurante_app&#10;# Este fichero permite que Python trate la carpeta como un paquete.&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/modelos/__init__.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/modelos/__init__.py" />
+              <option name="updatedContent" value="# Paquete modelos: contiene las clases que modelan las entidades del restaurante&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/modelos/cliente.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/modelos/cliente.py" />
+              <option name="updatedContent" value="&quot;&quot;&quot;&#10;Modelo Cliente&#10;Representa a un cliente que realiza/o recibe pedidos en el restaurante.&#10;&quot;&quot;&quot;&#10;&#10;class Cliente:&#10;    def __init__(self, id_cliente: int, nombre: str, telefono: str = None, mesa: int = None):&#10;        &quot;&quot;&quot;Inicializa un cliente.&#10;&#10;        Args:&#10;            id_cliente: identificador numérico del cliente&#10;            nombre: nombre completo&#10;            telefono: número de contacto (opcional)&#10;            mesa: número de mesa asignada (opcional)&#10;        &quot;&quot;&quot;&#10;        self.id = id_cliente&#10;        self.nombre = nombre&#10;        self.telefono = telefono&#10;        self.mesa = mesa&#10;        # Cada pedido es una lista de objetos Producto&#10;        self.pedidos = []&#10;&#10;    def agregar_pedido(self, lista_productos):&#10;        &quot;&quot;&quot;Agrega un pedido (lista de productos) al historial del cliente.&quot;&quot;&quot;&#10;        if not isinstance(lista_productos, list):&#10;            raise TypeError(&quot;El pedido debe ser una lista de productos&quot;)&#10;        self.pedidos.append(lista_productos)&#10;&#10;    def monto_total(self):&#10;        &quot;&quot;&quot;Calcula el total gastado por el cliente sumando todos los pedidos.&quot;&quot;&quot;&#10;        total = 0.0&#10;        for pedido in self.pedidos:&#10;            for producto in pedido:&#10;                total += producto.precio&#10;        return round(total, 2)&#10;&#10;    def __str__(self):&#10;        mesa_info = f&quot;, mesa {self.mesa}&quot; if self.mesa is not None else &quot;&quot;&#10;        return f&quot;Cliente[{self.id}] {self.nombre}{mesa_info} - Pedidos: {len(self.pedidos)}&quot;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/modelos/producto.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/modelos/producto.py" />
+              <option name="updatedContent" value="&quot;&quot;&quot;&#10;Modelo Producto&#10;Representa un producto del restaurante (plato, bebida u otro).&#10;&quot;&quot;&quot;&#10;&#10;class Producto:&#10;    def __init__(self, id_producto: int, nombre: str, tipo: str, precio: float, descripcion: str = &quot;&quot;):&#10;        &quot;&quot;&quot;Inicializa un producto.&#10;&#10;        Args:&#10;            id_producto: identificador numérico del producto&#10;            nombre: nombre del producto&#10;            tipo: tipo de producto (por ejemplo: 'plato', 'bebida')&#10;            precio: precio unitario&#10;            descripcion: descripción breve&#10;        &quot;&quot;&quot;&#10;        self.id = id_producto&#10;        self.nombre = nombre&#10;        self.tipo = tipo&#10;        self.precio = float(precio)&#10;        self.descripcion = descripcion&#10;&#10;    def aplicar_descuento(self, porcentaje: float):&#10;        &quot;&quot;&quot;Aplica un descuento porcentual al precio del producto.&#10;&#10;        porcentaje: 0-100&#10;        &quot;&quot;&quot;&#10;        if porcentaje &lt; 0 or porcentaje &gt; 100:&#10;            raise ValueError(&quot;El porcentaje debe estar entre 0 y 100&quot;)&#10;        self.precio = round(self.precio * (1 - porcentaje / 100), 2)&#10;&#10;    def __str__(self):&#10;        return f&quot;Producto[{self.id}] {self.nombre} ({self.tipo}) - ${self.precio:.2f} - {self.descripcion}&quot;&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/servicios/__init__.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/servicios/__init__.py" />
+              <option name="updatedContent" value="# Paquete servicios: contiene la lógica que administra el restaurante&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/servicios/restaurante.py">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/PARCIAL_1/SEMANA_4/restaurante_app/servicios/restaurante.py" />
+              <option name="updatedContent" value="&quot;&quot;&quot;&#10;Servicio Restaurante&#10;Gestiona productos, clientes y operaciones básicas (registrar, listar, crear pedidos).&#10;&quot;&quot;&quot;&#10;from modelos.producto import Producto&#10;from modelos.cliente import Cliente&#10;&#10;&#10;class Restaurante:&#10;    def __init__(self, nombre: str):&#10;        &quot;&quot;&quot;Inicializa el restaurante con listas vacías de productos y clientes.&quot;&quot;&quot;&#10;        self.nombre = nombre&#10;        self.productos = []  # lista de Producto&#10;        self.clientes = []   # lista de Cliente&#10;&#10;    # ----- Gestión de productos -----&#10;    def registrar_producto(self, producto: Producto):&#10;        &quot;&quot;&quot;Registra un producto en el catálogo.&quot;&quot;&quot;&#10;        if not isinstance(producto, Producto):&#10;            raise TypeError(&quot;Se esperaba un objeto Producto&quot;)&#10;        self.productos.append(producto)&#10;&#10;    def listar_productos(self):&#10;        &quot;&quot;&quot;Devuelve la lista de productos registrados.&quot;&quot;&quot;&#10;        return self.productos&#10;&#10;    def buscar_producto_por_id(self, id_producto: int):&#10;        for p in self.productos:&#10;            if p.id == id_producto:&#10;                return p&#10;        return None&#10;&#10;    def buscar_producto_por_nombre(self, nombre: str):&#10;        return [p for p in self.productos if nombre.lower() in p.nombre.lower()]&#10;&#10;    # ----- Gestión de clientes -----&#10;    def registrar_cliente(self, cliente: Cliente):&#10;        if not isinstance(cliente, Cliente):&#10;            raise TypeError(&quot;Se esperaba un objeto Cliente&quot;)&#10;        self.clientes.append(cliente)&#10;&#10;    def listar_clientes(self):&#10;        return self.clientes&#10;&#10;    def buscar_cliente_por_id(self, id_cliente: int):&#10;        for c in self.clientes:&#10;            if c.id == id_cliente:&#10;                return c&#10;        return None&#10;&#10;    # ----- Pedidos -----&#10;    def crear_pedido(self, id_cliente: int, lista_ids_productos: list):&#10;        &quot;&quot;&quot;Crea un pedido para un cliente dado una lista de ids de productos.&#10;&#10;        Devuelve el total del pedido.&#10;        &quot;&quot;&quot;&#10;        cliente = self.buscar_cliente_por_id(id_cliente)&#10;        if cliente is None:&#10;            raise ValueError(&quot;Cliente no encontrado&quot;)&#10;&#10;        productos_pedido = []&#10;        for pid in lista_ids_productos:&#10;            prod = self.buscar_producto_por_id(pid)&#10;            if prod is None:&#10;                raise ValueError(f&quot;Producto con id {pid} no encontrado&quot;)&#10;            productos_pedido.append(prod)&#10;&#10;        cliente.agregar_pedido(productos_pedido)&#10;        total = sum(p.precio for p in productos_pedido)&#10;        return round(total, 2)&#10;&#10;    def mostrar_pedidos_cliente(self, id_cliente: int):&#10;        cliente = self.buscar_cliente_por_id(id_cliente)&#10;        if cliente is None:&#10;            raise ValueError(&quot;Cliente no encontrado&quot;)&#10;        if not cliente.pedidos:&#10;            return f&quot;El cliente {cliente.nombre} no tiene pedidos registrados.&quot;&#10;&#10;        salida = [f&quot;Pedidos de {cliente.nombre}:&quot;]&#10;        for i, pedido in enumerate(cliente.pedidos, start=1):&#10;            salida.append(f&quot;  Pedido {i}:&quot;)&#10;            for prod in pedido:&#10;                salida.append(f&quot;    - {prod}&quot;)&#10;        salida.append(f&quot;  Total gastado: ${cliente.monto_total():.2f}&quot;)&#10;        return &quot;\n&quot;.join(salida)&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
