@@ -1,0 +1,16 @@
+[
+  {
+    "codigo": "P001",
+    "nombre": "Hamburguesa",
+    "categoria": "Platos fuertes",
+    "precio": 12.5,
+    "stock": 10
+  },
+  {
+    "codigo": "P002",
+    "nombre": "Ensalada",
+    "categoria": "Entradas",
+    "precio": 8.0,
+    "stock": 6
+  }
+]
