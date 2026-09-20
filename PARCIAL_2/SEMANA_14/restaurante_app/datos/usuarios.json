@@ -1,0 +1,14 @@
+[
+  {
+    "identificacion": "admin",
+    "nombre": "Administrador",
+    "correo": "admin@restaurante.com",
+    "password": "1234"
+  },
+  {
+    "identificacion": "mesero",
+    "nombre": "Mesero",
+    "correo": "mesero@restaurante.com",
+    "password": "4321"
+  }
+]
