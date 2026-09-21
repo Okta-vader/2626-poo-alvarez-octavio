@@ -1,10 +1,15 @@
-# Semana 14 - Componentes y contenedores en Tkinter
+# Semana 14 - Componentes y contenedores
 
-## Descripción
-Esta entrega corresponde a la Semana 14 de la asignatura Programación Orientada a Objetos. El proyecto mantiene la arquitectura modular del sistema `restaurante_app`, pero mejora la capa visual incorporando componentes, contenedores y formularios para gestionar productos de una forma más clara y ordenada.
+## Información del Estudiante
+**Nombre Completo:** Octavio Manuel Alvarez Cedeño
 
-## Estructura del proyecto
+## Descripción del Sistema
 
+Proyecto de interfaz gráfica para `restaurante_app` usando Tkinter. Se mantiene la arquitectura modular con modelos, servicios, archivos JSON y una capa `ui/` para las vistas. La aplicación conserva el flujo de inicio de sesión y evoluciona la interfaz principal incorporando componentes, contenedores, formularios y áreas de visualización para gestionar productos de manera clara y ordenada.
+
+## Estructura del Proyecto
+
+```
 restaurante_app/
 ├── datos/
 │   ├── productos.json
@@ -23,35 +28,39 @@ restaurante_app/
 │   └── main_view.py
 ├── main.py
 └── README.md
+```
 
-## Mejoras implementadas
-- Se conserva el inicio de sesión con validación basada en `RestauranteServicio`.
-- La interfaz principal se organiza con contenedores para separar navegación y contenido.
-- Se incorpora un formulario para registrar, consultar, actualizar y eliminar productos.
-- Se mantiene la información de usuarios disponible en una vista de consulta.
-- Las operaciones de negocio quedan dentro del servicio y no en la capa visual.
-- La persistencia continúa en archivos JSON con los datos del restaurante.
+## Responsabilidad de cada módulo
 
-## Componentes y contenedores usados
-- `ttk.Frame` para estructurar los paneles.
-- `ttk.LabelFrame` para agrupar formularios y listados.
-- `ttk.Entry` para capturar información del producto.
-- `ttk.Button` para ejecutar acciones mediante `command=`.
-- `ttk.Treeview` para visualizar los registros de productos.
-- `tk.Text` para mostrar al usuario la información de usuarios.
+- `modelos/producto.py`: clase `Producto` con código, nombre, categoría, precio y stock.
+- `modelos/usuario.py`: clase `Usuario` con identificación, nombre, correo y contraseña para la validación de acceso.
+- `servicios/archivo_servicio.py`: acceso y persistencia de los archivos JSON (`productos.json` y `usuarios.json`).
+- `servicios/restaurante_servicio.py`: administración de la lógica del negocio, validación de acceso y operaciones sobre productos.
+- `ui/login_view.py`: vista de inicio con usuario y contraseña.
+- `ui/main_view.py`: panel principal con contenedores, formulario de productos, tabla/listado y consulta de usuarios.
+- `main.py`: crea la ventana principal y alterna entre login y panel general del restaurante.
 
-## Operaciones de productos implementadas
-- Registrar producto.
-- Cargar producto por código.
-- Actualizar información del producto.
-- Eliminar producto.
-- Mostrar el listado actualizado en la interfaz.
+## Flujo de la aplicación
 
-## Persistencia
-La información de productos y usuarios se guarda en archivos JSON dentro de la carpeta `datos/`. El servicio encargado de manipular archivos valida y guarda los cambios de forma centralizada.
+1. `main.py` prepara la ventana principal y crea `RestauranteServicio`.
+2. Se muestra `LoginView`.
+3. El usuario ingresa credenciales.
+4. `RestauranteServicio.validar_acceso()` valida la información.
+5. Si es correcta, se muestra `MainView`.
+6. El usuario puede navegar entre la sección de usuarios y la gestión de productos.
+7. Los productos pueden registrarse, consultarse, actualizarse y eliminarse mediante botones.
+8. Cada operación se procesa en `RestauranteServicio` y se guarda en `productos.json`.
+9. La interfaz se actualiza para reflejar el estado actual del sistema.
+
+## Excepciones controladas
+
+- `FileNotFoundError`: si no existe un archivo JSON, el sistema inicia con una colección vacía.
+- `json.JSONDecodeError`: si el contenido del JSON no es válido.
+- `KeyError` / `ValueError`: los registros inválidos se omiten o se rechazan sin detener la aplicación.
 
 ## Cómo ejecutar
-1. Abrir una terminal en la carpeta `PARCIAL_2/SEMANA_14/restaurante_app`.
+
+1. Abrir la terminal en `PARCIAL_2/SEMANA_14/restaurante_app`.
 2. Ejecutar:
 
 ```bash
@@ -62,5 +71,24 @@ python main.py
    - Usuario: `admin` / Contraseña: `1234`
    - Usuario: `mesero` / Contraseña: `4321`
 
-## Observación
-La lógica de negocio y validaciones se mantienen encapsuladas en `RestauranteServicio`, mientras que la interfaz se encarga de coordinar la interacción con el usuario.
+## Validaciones implementadas
+
+- Login con credenciales válidas.
+- Mensaje visual si el usuario o la contraseña están vacíos.
+- Mensaje visual si las credenciales son incorrectas.
+- Consulta de usuarios desde la vista principal.
+- Formulario organizado para productos con contenedores.
+- Registro de un nuevo producto.
+- Carga de un producto por código.
+- Actualización de datos de un producto existente.
+- Eliminación de un producto.
+- Persistencia en `productos.json` después de cada operación.
+- Actualización automática de la interfaz tras cada cambio.
+
+## Reflexión breve
+
+Esta etapa se centra en aplicar correctamente los conceptos de componentes y contenedores de Tkinter. La mejora principal es la organización visual de la aplicación, separando las áreas de navegación, formularios y presentación de información, mientras se conserva la lógica de negocio en servicios y la persistencia por archivos JSON.
+
+---
+
+**Fecha de entrega:** Semana 14 - Programación Orientada a Objetos
