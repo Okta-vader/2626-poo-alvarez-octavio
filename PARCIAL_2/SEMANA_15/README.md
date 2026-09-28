@@ -14,8 +14,11 @@ Cambios y archivos importantes
 - assets/: carpeta creada para logo e íconos (colocar logo.png, icon.ico si se desea).
 
 Estructura del proyecto
+
+```
 restaurante_app/
-├── assets/                 # recursos visuales (logo, iconos)
+├── assets/
+│   └── logo.txt (placeholder)
 ├── datos/
 │   ├── productos.json
 │   ├── usuarios.json
@@ -34,6 +37,8 @@ restaurante_app/
 │   ├── login_view.py
 │   └── main_view.py
 └── main.py
+```
+
 
 Responsabilidades por módulo (resumen)
 - modelos/producto.py: validaciones del dominio, to_dict()/from_dict().

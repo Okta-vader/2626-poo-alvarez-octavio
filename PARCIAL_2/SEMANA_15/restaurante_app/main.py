@@ -8,27 +8,29 @@ from ui.login_view import LoginView
 from ui.main_view import MainView
 
 # Estructura del proyecto (árbol)
+# ```
 # restaurante_app/
-#   assets/
-#     logo.txt (placeholder)
-#   datos/
-#     productos.json
-#     usuarios.json
-#     ventas.json
-#   modelos/
-#     __init__.py
-#     producto.py
-#     usuario.py
-#     venta.py
-#   servicios/
-#     __init__.py
-#     archivo_servicio.py
-#     restaurante_servicio.py
-#   ui/
-#     __init__.py
-#     login_view.py
-#     main_view.py
-#   main.py
+# ├── assets/
+# │   └── logo.txt (placeholder)
+# ├── datos/
+# │   ├── productos.json
+# │   ├── usuarios.json
+# │   └── ventas.json
+# ├── modelos/
+# │   ├── __init__.py
+# │   ├── producto.py
+# │   ├── usuario.py
+# │   └── venta.py
+# ├── servicios/
+# │   ├── __init__.py
+# │   ├── archivo_servicio.py
+# │   └── restaurante_servicio.py
+# ├── ui/
+# │   ├── __init__.py
+# │   ├── login_view.py
+# │   └── main_view.py
+# └── main.py
+# ```
 
 
 class App:
