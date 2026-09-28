@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import ttk
 
@@ -9,16 +10,30 @@ class LoginView(ttk.Frame):
         self.on_login = on_login
         self.configure(padding=30)
 
+        # Cargar logo desde assets
+        assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "assets"))
+        logo_path = os.path.join(assets_dir, "logo.png")
+        self.logo_img = None
+        try:
+            self.logo_img = tk.PhotoImage(file=logo_path)
+        except Exception:
+            self.logo_img = None
+
+        # mostrar logo en la parte superior si está disponible
+        if self.logo_img:
+            logo_label = ttk.Label(self, image=self.logo_img)
+            logo_label.grid(row=0, column=0, pady=(0, 10))
+
         self.columnconfigure(0, weight=1)
 
         title = ttk.Label(self, text="Sistema de Restaurante", font=("Segoe UI", 20, "bold"))
-        title.grid(row=0, column=0, pady=(0, 10), sticky="ew")
+        title.grid(row=1 if self.logo_img else 0, column=0, pady=(0, 10), sticky="ew")
 
         subtitle = ttk.Label(self, text="Inicio de sesión", font=("Segoe UI", 12))
-        subtitle.grid(row=1, column=0, pady=(0, 20), sticky="ew")
+        subtitle.grid(row=2 if self.logo_img else 1, column=0, pady=(0, 20), sticky="ew")
 
         form = ttk.Frame(self, padding=20)
-        form.grid(row=2, column=0, sticky="nsew")
+        form.grid(row=3 if self.logo_img else 2, column=0, sticky="nsew")
         form.columnconfigure(1, weight=1)
 
         ttk.Label(form, text="Usuario:").grid(row=0, column=0, sticky="w", padx=(0, 10), pady=(0, 8))

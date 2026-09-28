@@ -40,6 +40,17 @@ class App:
         self.root.geometry("1100x650")
         self.root.minsize(900, 550)
 
+        # Intentar cargar logo y establecer icono de la ventana
+        assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "assets"))
+        logo_path = os.path.join(assets_dir, "logo.png")
+        self._logo_img = None
+        try:
+            self._logo_img = tk.PhotoImage(file=logo_path)
+            self.root.iconphoto(True, self._logo_img)
+        except Exception:
+            # si no existe el logo, continuar sin icono
+            self._logo_img = None
+
         base_dir = os.path.join(os.path.dirname(__file__), "datos")
         self.restaurante_servicio = RestauranteServicio(base_dir)
 
