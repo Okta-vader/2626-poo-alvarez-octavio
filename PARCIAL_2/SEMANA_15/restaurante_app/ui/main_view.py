@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import messagebox, ttk
 
@@ -9,6 +10,28 @@ class MainView(ttk.Frame):
         self.on_logout = on_logout
         self.configure(padding=15)
 
+        # Cargar iconos desde assets/
+        assets_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "assets"))
+        def _load_icon(fname):
+            path = os.path.join(assets_dir, fname)
+            try:
+                return tk.PhotoImage(file=path)
+            except Exception:
+                return None
+
+        self._icons = {
+            'add': _load_icon('icon_add.png'),
+            'load': _load_icon('icon_load.png'),
+            'update': _load_icon('icon_update.png'),
+            'delete': _load_icon('icon_delete.png'),
+            'clear': _load_icon('icon_clear.png'),
+            'users': _load_icon('icon_users.png'),
+            'products': _load_icon('icon_products.png'),
+            'sales': _load_icon('icon_sales.png'),
+            'logout': _load_icon('icon_logout.png'),
+            'logo': _load_icon('logo.png'),
+        }
+
         self.columnconfigure(1, weight=1)
         self.rowconfigure(0, weight=1)
 
@@ -18,16 +41,16 @@ class MainView(ttk.Frame):
 
         ttk.Label(sidebar, text="Menú", font=("Segoe UI", 14, "bold")).grid(row=0, column=0, sticky="ew", pady=(0, 15))
 
-        self.btn_productos = ttk.Button(sidebar, text="Productos", command=self.mostrar_productos)
+        self.btn_productos = ttk.Button(sidebar, text="Productos", image=self._icons.get('products'), compound='left', command=self.mostrar_productos)
         self.btn_productos.grid(row=1, column=0, sticky="ew", pady=4)
 
-        self.btn_usuarios = ttk.Button(sidebar, text="Usuarios", command=self.mostrar_usuarios)
+        self.btn_usuarios = ttk.Button(sidebar, text="Usuarios", image=self._icons.get('users'), compound='left', command=self.mostrar_usuarios)
         self.btn_usuarios.grid(row=2, column=0, sticky="ew", pady=4)
 
-        self.btn_ventas = ttk.Button(sidebar, text="Ventas", command=self.mostrar_ventas)
+        self.btn_ventas = ttk.Button(sidebar, text="Ventas", image=self._icons.get('sales'), compound='left', command=self.mostrar_ventas)
         self.btn_ventas.grid(row=3, column=0, sticky="ew", pady=4)
 
-        self.btn_logout = ttk.Button(sidebar, text="Cerrar sesión", command=self.on_logout)
+        self.btn_logout = ttk.Button(sidebar, text="Cerrar sesión", image=self._icons.get('logout'), compound='left', command=self.on_logout)
         self.btn_logout.grid(row=4, column=0, sticky="ew", pady=(12, 0))
 
         self.content = ttk.Frame(self)
@@ -69,14 +92,19 @@ class MainView(ttk.Frame):
 
         action_row = ttk.Frame(form_frame)
         action_row.grid(row=5, column=0, columnspan=2, sticky="ew", pady=(12, 0))
-        for text, command in [
-            ("Registrar", self.registrar_producto),
-            ("Cargar", self.cargar_producto),
-            ("Actualizar", self.actualizar_producto),
-            ("Eliminar", self.eliminar_producto),
-            ("Limpiar", self.limpiar_formulario),
-        ]:
-            ttk.Button(action_row, text=text, command=command).pack(side="left", padx=(0, 8))
+        buttons = [
+            ("Registrar", 'add', self.registrar_producto),
+            ("Cargar", 'load', self.cargar_producto),
+            ("Actualizar", 'update', self.actualizar_producto),
+            ("Eliminar", 'delete', self.eliminar_producto),
+            ("Limpiar", 'clear', self.limpiar_formulario),
+        ]
+        for text, key, command in buttons:
+            img = self._icons.get(key)
+            if img:
+                ttk.Button(action_row, text=text, image=img, compound='left', command=command).pack(side="left", padx=(0, 8))
+            else:
+                ttk.Button(action_row, text=text, command=command).pack(side="left", padx=(0, 8))
 
         table_frame = ttk.LabelFrame(self.product_panel, text="Listado de productos", padding=(10, 10, 10, 0))
         table_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 10))
@@ -129,7 +157,8 @@ class MainView(ttk.Frame):
         self.venta_cantidad_var = tk.StringVar(value="1")
         ttk.Entry(sales_form, textvariable=self.venta_cantidad_var).grid(row=2, column=1, sticky="ew", pady=5)
 
-        ttk.Button(sales_form, text="Registrar venta", command=self.registrar_venta).grid(row=3, column=0, columnspan=2, pady=(10, 0), sticky="ew")
+        btn_sale = ttk.Button(sales_form, text="Registrar venta", image=self._icons.get('add'), compound='left', command=self.registrar_venta)
+        btn_sale.grid(row=3, column=0, columnspan=2, pady=(10, 0), sticky="ew")
 
         sales_table_frame = ttk.LabelFrame(self.sales_panel, text="Ventas registradas", padding=(10, 10, 10, 0))
         sales_table_frame.grid(row=1, column=0, sticky="nsew")
