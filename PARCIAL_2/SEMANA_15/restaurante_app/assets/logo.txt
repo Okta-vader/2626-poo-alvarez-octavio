@@ -1,0 +1,2 @@
+Placeholder logo: replace this file with an image (logo.png) for the application assets folder.
+Suggested: place a 64x64 or 128x128 PNG named logo.png and an icon file named icon.ico.
