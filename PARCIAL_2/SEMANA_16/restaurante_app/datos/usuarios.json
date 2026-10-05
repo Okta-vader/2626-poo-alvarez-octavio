@@ -1,0 +1,23 @@
+[
+  {
+    "identificacion": "admin",
+    "nombre": "Administrador",
+    "correo": "admin@restaurante.com",
+    "password": "1234",
+    "rol": "Administrador"
+  },
+  {
+    "identificacion": "mesero",
+    "nombre": "Mesero",
+    "correo": "mesero@restaurante.com",
+    "password": "4321",
+    "rol": "Empleado"
+  },
+  {
+    "identificacion": "cliente",
+    "nombre": "Cliente de prueba",
+    "correo": "cliente@restaurante.com",
+    "password": "1111",
+    "rol": "Cliente"
+  }
+]
